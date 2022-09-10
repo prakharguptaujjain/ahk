@@ -37,7 +37,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 Send, {Right}
 Send, {;}
 Send, ^{Enter}
-Send, {Enter}
 return
 
 #::
@@ -67,11 +66,33 @@ Send, *
 return
 
 [::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Left}
+Send, {Left}
+Send, {Left}
+Send, {Shift up}
+Send, ^c
+Sleep, 25
+if(Clipboard = "arr" or Clipboard = "rr1" or Clipboard = "rr2"){
+Send, {Right}
+SendRaw, [
+Clipboard:= OldClipboard
+return
+}else {
 Send, ^{Enter}
 SendRaw, {}
-Send, {Left} 
+Send, {Left}
+Send, {Enter}
 Send, {Enter}
 Send, {Up}
+Send, {Tab}
+Clipboard:= OldClipboard
+return
+}
+Clipboard:= OldClipboard
 return
 
 ]::
@@ -85,4 +106,80 @@ return
 
 ^]::
 SendRaw, ]
+return
+
+=::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+if(Clipboard = "]"){
+    Send, {Right}
+    Send, =
+}else {
+    Send, =
+}
+Clipboard:= OldClipboard
+return
+
+,::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+if(Clipboard = "]"){
+    Send, {Right}
+    Send, ,
+}else {
+    Send, ,
+}
+Clipboard:= OldClipboard
+return
+
+<::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+if(Clipboard = "]"){
+    Send, {Right}
+    SendRaw, <
+}else {
+    SendRaw, <
+}
+Clipboard:= OldClipboard
+return
+
+>::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+if(Clipboard = "]"){
+    Send, {Right}
+    Send, >
+}else {
+    Send, >
+}
+Clipboard:= OldClipboard
 return
