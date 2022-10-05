@@ -5,6 +5,28 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #IfWinActive ahk_exe Code.exe
 
+^\::
+sleep 10
+send, ^z
+send, ^z
+send, ^z
+send, ^z
+send, ^z
+send, {right}
+SendRaw, [
+Return
+
+
+^`::
+sleep 10
+send, ^z
+send, ^z
+send, ^z
+send, ^z
+send, ^z
+send, {right}
+Return
+
 ;Numpad1::
 ;Send, ^a
 ;Sleep 100
@@ -34,9 +56,28 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;Return
 
 `::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
 Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+while(Clipboard = ")" or Clipboard = "]" or Clipboard = Chr(34)){
+    Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Right}
+Sleep, 10
+}
+Send, {Left}
 Send, {;}
 Send, ^{Enter}
+Clipboard:= OldClipboard
 return
 
 #::
@@ -108,6 +149,25 @@ return
 SendRaw, ]
 return
 
+!::
+OldClipboard:= Clipboard
+;Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Send, {Left}
+Sleep, 10
+if(Clipboard = Chr(33)){
+    Send, {Right}
+    SendRaw, !
+}else {
+    SendRaw, !
+}
+Clipboard:= OldClipboard
+return
+
 =::
 OldClipboard:= Clipboard
 ;Clipboard := ""
@@ -146,7 +206,9 @@ if(Clipboard = "]"){
 Clipboard:= OldClipboard
 return
 
-<::
+
+
+`;::
 OldClipboard:= Clipboard
 ;Clipboard := ""
 Send, {Shift down}
@@ -158,28 +220,52 @@ Send, {Left}
 Sleep, 10
 if(Clipboard = "]"){
     Send, {Right}
-    SendRaw, <
+    SendRaw, `;
+
 }else {
-    SendRaw, <
+    SendRaw, `;
 }
 Clipboard:= OldClipboard
 return
 
->::
-OldClipboard:= Clipboard
-;Clipboard := ""
-Send, {Shift down}
-KeyWait, Shift
-Send, {Right}
-Send, {Shift up}
-Send, ^c
-Send, {Left}
-Sleep, 10
-if(Clipboard = "]"){
-    Send, {Right}
-    Send, >
-}else {
-    Send, >
-}
-Clipboard:= OldClipboard
-return
+
+
+;{RShift}{,}::
+;OldClipboard:= Clipboard
+;;Clipboard := ""
+;Send, {Shift down}
+;KeyWait, Shift
+;Send, {Right}
+;Send, {Shift up}
+;Send, ^c
+;Send, {Left}
+;Sleep, 10
+;if(Clipboard = "]"){
+;    Send, {Right}
+;    SendRaw, <
+;}else {
+;    SendRaw, <
+;}
+;Clipboard:= OldClipboard
+;return
+;
+;{RShift}{.}::
+;OldClipboard:= Clipboard
+;;Clipboard := ""
+;Send, {Shift down}
+;KeyWait, Shift
+;Send, {Right}
+;Send, {Shift up}
+;Send, ^c
+;Send, {Left}
+;Sleep, 10
+;if(Clipboard = "]"){
+;    Send, {Right}
+;    Send, >
+;}else {
+;    Send, >
+;}
+;Clipboard:= OldClipboard
+;return
+
+
