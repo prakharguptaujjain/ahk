@@ -80,11 +80,6 @@ Send, ^{Enter}
 Clipboard:= OldClipboard
 return
 
-#::
-Send, {Right}
-Send, <<endl;
-Send, ^{Enter}
-return
 
 @::
 Send, {Spacebar}
@@ -122,7 +117,22 @@ Send, {Right}
 SendRaw, [
 Clipboard:= OldClipboard
 return
-}else {
+}
+Send, {Right}
+Clipboard := ""
+Send, {Shift down}
+KeyWait, Shift
+Send, {Right}
+Send, {Shift up}
+Send, ^c
+Sleep, 15
+if(Clipboard = "]"){
+Send, {Right}
+SendRaw, [
+Clipboard:= OldClipboard
+return
+}
+else {
 Send, ^{Enter}
 SendRaw, {}
 Send, {Left}
@@ -228,7 +238,22 @@ if(Clipboard = "]"){
 Clipboard:= OldClipboard
 return
 
+#q::
+Send, ^a
+Send, cb
+sleep, 250
+send, p
+sleep, 200
+send, {Enter}
+return
 
+#w::
+Send, ^a
+Send, cb
+sleep, 250
+send, b
+send, {Enter}
+return
 
 ;{RShift}{,}::
 ;OldClipboard:= Clipboard

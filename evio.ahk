@@ -45,8 +45,8 @@ return
 
 ^+p::
 SendMode, Event
-SendRaw, %Clipboard%
 SetKeyDelay, 30,30
+Send, %Clipboard%
 return
 
 
