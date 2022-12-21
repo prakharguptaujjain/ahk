@@ -16,6 +16,12 @@ send, {right}
 SendRaw, [
 Return
 
+\::
+Send, !r
+sleep 400
+Send, ^+v
+Send, {Enter}
+return
 
 ^`::
 sleep 10
@@ -133,12 +139,15 @@ Clipboard:= OldClipboard
 return
 }
 else {
+send, {Left}
 Send, ^{Enter}
 SendRaw, {}
 Send, {Left}
 Send, {Enter}
-Send, {Enter}
 Send, {Up}
+Send, {Tab}
+Send, {Right}
+Send, {Enter}
 Send, {Tab}
 Clipboard:= OldClipboard
 return
