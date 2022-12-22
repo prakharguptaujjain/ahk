@@ -3,9 +3,9 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-!Left::Send   {Media_Prev}
-!Down::Send   {Media_Play_Pause}
-!Right::Send  {Media_Next}
+;!Left::Send   {Media_Prev}
+;!Down::Send   {Media_Play_Pause}
+;!Right::Send  {Media_Next}
 
 ^+x::
 OldClipboard:= Clipboard
