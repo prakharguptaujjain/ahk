@@ -5,6 +5,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #IfWinActive ahk_exe Code.exe
 
+MButton::
+Send, ^+v
+sleep, 100
+send, {enter}
+return
+
 ^\::
 sleep 10
 send, ^z
