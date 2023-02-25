@@ -59,3 +59,16 @@ return
 Send, {Enter}
 return
 }
+
+;#IfWinActive ahk_exe UnrealEditor.exe
+;Esc::
+;Send, {Esc}
+;sleep 2000
+;Send, {Esc}
+;sleep 2000
+;Send, ^r
+;return
+
+
+
+

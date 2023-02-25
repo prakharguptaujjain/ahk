@@ -14,3 +14,19 @@ return
 Send, *
 return
 
+#IfWinActive ahk_exe msedge.exe
+MButton::
+WinGetTitle, title, A
+If (InStr(title, ".ipynb")) {
+MouseGetPos, x, y
+If (y > 100) {
+;Send, MouseClick[Left]
+sleep, 100
+send, ^{enter}
+}
+}
+ else {
+Send, {MButton}
+}
+return
+#IfWinActive

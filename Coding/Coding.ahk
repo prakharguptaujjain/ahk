@@ -3,12 +3,25 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+storedClipboard := ""
+
 #IfWinActive ahk_exe Code.exe
 
+
+
 MButton::
-Send, ^+v
-sleep, 100
-send, {enter}
+MouseGetPos, x, y
+If (y > (A_ScreenHeight/2)) {
+Send, {Click}
+;Send , ^+v
+;sleep, 100
+;Send, {Enter}
+    SendRaw, %storedClipboard%
+    sleep, 100
+    send, {enter}
+} else {
+    Send, {MButton}
+}
 return
 
 ^\::
@@ -23,10 +36,16 @@ SendRaw, [
 Return
 
 \::
-Send, !r
-sleep 400
-Send, ^+v
-Send, {Enter}
+;clipboardContent := ""
+;filePath := "C:/Users/prakh/Desktop/Mimir/input.txt"
+;clipboardContent := clipboard
+;FileDelete, %filePath%, 0
+;FileAppend, %clipboardContent%, %filePath%
+storedClipboard := clipboard
+;Send, !r
+;sleep 400
+;Send, ^+v
+;Send, {Enter}
 return
 
 ^`::
@@ -124,7 +143,7 @@ Send, {Left}
 Send, {Shift up}
 Send, ^c
 Sleep, 25
-if(Clipboard = "arr" or Clipboard = "rr1" or Clipboard = "rr2"){
+if(Clipboard = "arr" or Clipboard = "rr1" or Clipboard = "rr2" or SubStr(Clipboard, 2, 2) = "dp"){
 Send, {Right}
 SendRaw, [
 Clipboard:= OldClipboard
