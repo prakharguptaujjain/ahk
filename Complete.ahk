@@ -39,6 +39,29 @@ Clipboard:= OldClipboard
 return
 
 
+;#IfWinActive, ahk_exe msedge.exe
+;
+;MButton::
+;if GetKeyState("MButton", "P") ; Check if MButton is pressed
+;{
+;    old_clipboard := ClipboardAll ; Save the current clipboard contents
+;    Send, ^c ; Copy the selected text
+;    ClipWait, 1 ; Wait for the clipboard to contain data for up to 1 second
+;    If ErrorLevel ; Check if there was an error with ClipWait
+;    {
+;        Clipboard := old_clipboard ; Restore the original clipboard contents
+;        return
+;    }
+;    If Clipboard = old_clipboard ; Check if the copied text is the same as the previous contents of the clipboard
+;    {
+;        Clipboard := old_clipboard ; Restore the original clipboard contents
+;        return
+;    }
+;    Send, ^x ; Cut the selected text
+;}
+;return
+;
+;#IfWinActive
 
 
 
