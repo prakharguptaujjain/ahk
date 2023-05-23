@@ -31,7 +31,8 @@ send, ^z
 send, ^z
 send, ^z
 send, ^z
-send, {right}
+send, ^z
+;send, {right}
 SendRaw, [
 Return
 
@@ -87,28 +88,31 @@ Return
 ;Return
 
 `::
-OldClipboard:= Clipboard
-;Clipboard := ""
-Send, {Shift down}
-KeyWait, Shift
-Send, {Right}
-Send, {Shift up}
-Send, ^c
-Send, {Left}
-Sleep, 10
-while(Clipboard = ")" or Clipboard = "]" or Clipboard = Chr(34)){
-    Send, {Shift down}
-KeyWait, Shift
-Send, {Right}
-Send, {Shift up}
-Send, ^c
-Send, {Right}
-Sleep, 10
-}
-Send, {Left}
-Send, {;}
+send, {end}
+send, {;}
 Send, ^{Enter}
-Clipboard:= OldClipboard
+;OldClipboard:= Clipboard
+;Clipboard := ""
+;Send, {Shift down}
+;KeyWait, Shift
+;Send, {Right}
+;Send, {Shift up}
+;Send, ^c
+;Send, {Left}
+;Sleep, 10
+;while(Clipboard = ")" or Clipboard = "]" or Clipboard = Chr(34)){
+;    Send, {Shift down}
+;KeyWait, Shift
+;Send, {Right}
+;Send, {Shift up}
+;Send, ^c
+;Send, {Right}
+;Sleep, 10
+;}
+;Send, {Left}
+;Send, {;}
+;Send, ^{Enter}
+;Clipboard:= OldClipboard
 return
 
 
