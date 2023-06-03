@@ -136,7 +136,7 @@ return
 Send, *
 return
 
-[::
+^[::
 OldClipboard:= Clipboard
 ;Clipboard := ""
 Send, {Shift down}
@@ -182,19 +182,6 @@ Clipboard:= OldClipboard
 return
 }
 Clipboard:= OldClipboard
-return
-
-]::
-SendRaw, }
-return
-
-^[::
-SendRaw, [
-return
-
-
-^]::
-SendRaw, ]
 return
 
 !::
